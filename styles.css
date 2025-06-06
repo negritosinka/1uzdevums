@@ -1,0 +1,36 @@
+body{
+    display:flex;
+    justify-content: center;
+    text-align: center;   
+    align-items: center;
+    line-height: 30px;
+    font-family: 'roboto';
+    font-style: normal;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 95px;
+    letter-spacing:0.1ex;
+    height: 100vh;
+    background-image: url("calc.webp");
+}
+
+#result {
+    font-size: 25px;
+    color: black;
+    text-decoration: underline;
+}
+
+#convertButton {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#value {
+    font-size: 20px;
+}
+
+.container{
+    background-color: aliceblue;
+    border-style: solid;
+    border-color: black;
+}
