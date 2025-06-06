@@ -8,12 +8,13 @@ function updateUnitsDropdown(type) {
         attalums:['Meters','Kilometers','Centimeters', 'Millimeters', 'Miles', 'Feet', 'Inches', 'Yards'],
         masa: ['Grams', 'Kilograms', 'Milligrams', 'Pounds', 'Ounces', 'Tons']
     };
+
     const unitFrom = document.getElementById('unitFrom');
     const unitTo = document.getElementById('unitTo');
     unitFrom.innerHTML = '';
     unitTo.innerHTML = '';
 
-    units[type].forEach(unit => {
+    units[type].forEach(unit => { // aizpilda 
             const optionFrom = document.createElement('option');
             optionFrom.value = unit;
             optionFrom.textContent = unit;
@@ -32,16 +33,21 @@ function convert() {
     const unitFrom = document.getElementById('unitFrom').value;
     const unitTo = document.getElementById('unitTo').value;
 
+    if (isNaN(value)) {
+        document.getElementById('result').innerText = "Lūdzu ievadiet derīgu skaitli.";
+        return;
+    }
+
     if (unitFrom === unitTo) {
-        document.getElementById('result').innerText = "Rezultatssss: " + value + " " + unitTo;
+        document.getElementById('result').innerText = "Rezultats: " + value + " " + unitTo;
         return value;
     }
 
 
-    const conversions = {
+    const conversions = { 
         temperatura: {
             'Celsius': {
-                'Fahrenheit': value => (value * 9/5) + 32,
+                'Fahrenheit': value => (value * 9/5) + 32, //tas pats => +'Meters': function(value) {return value * 1609.344;}
                 'Kelvin': value => value + 273.15
             },
             'Fahrenheit': {
@@ -176,12 +182,12 @@ function convert() {
         
     };
     
-    const result = conversions[unit][unitFrom][unitTo](value);
+    const result = conversions[unit][unitFrom][unitTo](value); //veic aprek. un rada rezultatu
     const resultElement = document.getElementById("result");
     resultElement.innerText = `Rezultats: ${result.toFixed(5)} ${unitTo}`;
 };
 
-const radioButtons = document.querySelectorAll('input[name="unit"]');
+const radioButtons = document.querySelectorAll('input[name="unit"]'); //maina dropdown pie katra radio
 radioButtons.forEach(button => {
     button.addEventListener('change', function() {
         const selectedType = this.value;
